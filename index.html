@@ -2,54 +2,73 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
-        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plaza Autoservicios</title>
+
+  <!-- link css-->
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-danger">
-        <a class="navbar-brand" href="#">Plaza Autoservicios</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-      
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Dropdown
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Something else here</a>
-              </div>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link disabled" href="#">Disabled</a>
-            </li>
-          </ul>
-          <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-6" id="search" type="search" placeholder="Buscar" aria-label="Search">
-          </form>
-        </div>
-      </nav>
-    <div class="container  mt-4">
-        <div class="row" id="products">
-        </div>
-    </div>
+  <header>
+    <a href="index.html" class="logo">
+      <img src="images/logo-plaza.png" alt="logo-plaza" class="logo-plaza" />
+    </a>
+    <ul class="navbar">
+      <li> <a href="#home">Home</a></li>
+      <li> <a href="#home">Off Sale</a></li>
+      <li> <a href="#home">Productos</a></li>
+      <li> <a href="#home">Contactanos</a></li>
+    </ul>
 
-    <script src="main.js"></script>
+    <div class="header-icons">
+      <i class='bx bx-menu' id="menu-icon" alt="menu-icon"></i>
+
+      <!--search box-->
+      <input id="inputSearch" type="search" placeholder="Buscar">
+      <i class='bx bx-search-alt-2' id="look-up" alt="search-icon"></i>
+
+      <i class='bx bx-cart' id="cart-icon" alt="cart-icon"><span id="counter-cart">0</span></i>
+      <i class='bx bxs-user-circle' id="user-icon" alt="user-icon"></i>
+    </div>
+  </header>
+
+
+  <main>
+    <!-- Carrito-->
+    <div class="cart">
+
+      <div id="cartContainer" class="box"> </div>
+
+      <h2>Total:</h2>
+      <a href="#" class="btn">Salir del carrito</a>
+
+    </div>
+    <section>
+      <h2> Productos más populares - Off Sale</h2>
+      <div id="productsContainer" class="productsContainer">
+      </div>
+
+    </section>
+
+  </main>
+
+  <div class="fixed">
+    <a href="#" target="_blank">
+      <img src="images/whatsapp.png" alt="whatsapp-icon" />
+    </a>
+  </div>
+  <footer>
+    <div>
+    </div>
+    <span></span>
+  </footer>
+
+  <!-- link js-->
+  <script src="main.js"></script>
 </body>
 
 </html>
