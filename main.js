@@ -65,7 +65,6 @@ let productsList = [
 ];
 
 function init() {
-    localStorage.setItem("productsList", JSON.stringify(productsList));
 }
 init()
 
@@ -73,6 +72,10 @@ main(productsList)
 
 function main(products) {
     let cart = []
+    if (localStorage.getItem("cart") != null) {
+        console.log("gololo")
+        cart = JSON.stringify(localStorage.getItem("cart"))
+    }
     let search = document.getElementById("look-up")
     search.addEventListener("click", () => searchProduct(products, cart))
     showProducts(products, cart)
@@ -85,7 +88,7 @@ function searchProduct(products, cart) {
 
 function filterProducts(products) {
     let inputSearch = document.getElementById("inputSearch")
-    products.filter(product => product.name.toLowerCase().includes(inputSearch.value.toLowerCase()) || product.category.toLowerCase().includes(inputSearch.value.toLowerCase()))
+    return products.filter(product => product.name.toLowerCase().includes(inputSearch.value.toLowerCase()) || product.category.toLowerCase().includes(inputSearch.value.toLowerCase()))
 }
 
 function showProducts(products, cart) {
@@ -105,9 +108,10 @@ function showProducts(products, cart) {
         productsContainer.append(productCard)
 
         let btnAddToCart = document.getElementById(product.id)
-        btnAddToCart.addEventListener("click", (btn) => addToCart (btn,products, cart))
+        btnAddToCart.addEventListener("click", (btn) => addToCart (btn, products, cart))
     });
 }
+
 function addToCart(btn, products, cart) {
 
     let idProduct = Number(btn.target.id)
@@ -127,12 +131,12 @@ function addToCart(btn, products, cart) {
             unitPrice: productLookedup.price,
             quantity: 1,
             subtotal: productLookedup.price,
-            image: productLookedup.image,
-
-
+            image: productLookedup.image
         })
     }
-    showProductsCart (cart)
+    showProductsCart(cart)
+    sumTotal(cart)
+    localStorage.setItem("cart", JSON.stringify(cart))
 }
 
 function showProductsCart(cart) {
@@ -146,15 +150,21 @@ function showProductsCart(cart) {
         <img src=${product.image} alt="" height="50"/>
         <div>
             <h6>${product.name} </h6>
-            <span>Precio Unitario: S/.${product.price} </span>
+            <span>Precio Unitario: S/.${product.unitPrice} </span>
             <span>x ${product.quantity} </span>
             <p>Subtotal: S/.${product.subtotal} </p> 
         </div>
         <i class='bx bxs-trash-alt'></i>
         `
         cartContainer.append(cartProductCard)
-
     });
 }
 
-
+function sumTotal(cart){
+    let total = 0;
+    cart.forEach(product => {
+        total += product.subtotal
+    })
+    let total_cart = document.getElementById("total_cart")
+    total_cart.innerHTML = total
+}
