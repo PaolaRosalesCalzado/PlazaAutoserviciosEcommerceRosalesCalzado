@@ -42,8 +42,8 @@ function showProducts(products, cart) {
         productsContainer.append(productCard)
 
         let btnAddToCart = document.getElementById(product.id)
-        btnAddToCart.addEventListener("click", (btn) => addToCart(btn, products, cart))
-    })
+        btnAddToCart.addEventListener("click", (btn) => addToCart (btn, products, cart))
+    });
 }
 
 function addToCart(btn, products, cart) {
@@ -53,7 +53,7 @@ function addToCart(btn, products, cart) {
 
     let productLookedup = products.find(product => product.id === idProduct)
 
-    if (positionProductCart !== -1) {
+    if (positionProductCart !== -1) { 
         cart[positionProductCart].quantity++
         cart[positionProductCart].subtotal = Number((cart[positionProductCart].unitPrice * cart[positionProductCart].quantity).toFixed(2))
     } else {
@@ -74,17 +74,17 @@ function addToCart(btn, products, cart) {
         gravity: "bottom",
         position: "left",
         style: {
-            background: "linear-gradient(to right, #00b09b, #96c93d)",
+          background: "linear-gradient(to right, #00b09b, #96c93d)",
         }
-    }).showToast()
+    }).showToast();
 }
 
 function showProductsCart(cart) {
     let cartContainer = document.getElementById("cartContainer")
     let counterCart = document.getElementById("counter-cart")
     let total_cart = document.getElementById("total_cart")
-    let quantity = 0
-    let total = 0
+    let quantity = 0;
+    let total = 0;
     cartContainer.innerHTML = ""
 
     cart.forEach(product => {
@@ -105,15 +105,15 @@ function showProductsCart(cart) {
         let btnAddToCart = document.getElementById("delete" + product.id)
         btnAddToCart.addEventListener("click", (btn) => removeFromCart(btn, cart))
         total += product.subtotal
-    })
-    counterCart.innerHTML = quantity
-    total_cart.innerHTML = total.toFixed(2)
+    });
+    counterCart.innerHTML = quantity;
+    total_cart.innerHTML = total
 }
 
-function removeFromCart(btn, cart) {
+function removeFromCart(btn, cart){
     let idProduct = Number(btn.target.id.replace("delete", ""))
     let positionProductCart = cart.findIndex(product => product.id === idProduct)
-    cart.splice(positionProductCart, 1)
+    cart.splice(positionProductCart, 1);
     showProductsCart(cart)
 
     localStorage.setItem("cart", JSON.stringify(cart))
@@ -123,7 +123,7 @@ function removeFromCart(btn, cart) {
         gravity: "bottom",
         position: "left",
         style: {
-            background: "linear-gradient(to right, #00b09b, #96c93d)",
+          background: "linear-gradient(to right, #00b09b, #96c93d)",
         }
-    }).showToast()
+    }).showToast();
 }
