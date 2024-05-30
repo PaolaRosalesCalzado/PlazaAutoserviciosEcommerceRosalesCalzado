@@ -12,6 +12,8 @@ function main() {
             let search = document.getElementById("look-up")
             search.addEventListener("click", () => searchProduct(products, cart))
             showProducts(products, cart)
+            let showSideBar = document.getElementById("cart-icon")
+            showSideBar.addEventListener("click", showHideSideBar)
         })
 }
 
@@ -42,8 +44,8 @@ function showProducts(products, cart) {
         productsContainer.append(productCard)
 
         let btnAddToCart = document.getElementById(product.id)
-        btnAddToCart.addEventListener("click", (btn) => addToCart (btn, products, cart))
-    });
+        btnAddToCart.addEventListener("click", (btn) => addToCart(btn, products, cart))
+    })
 }
 
 function addToCart(btn, products, cart) {
@@ -53,7 +55,7 @@ function addToCart(btn, products, cart) {
 
     let productLookedup = products.find(product => product.id === idProduct)
 
-    if (positionProductCart !== -1) { 
+    if (positionProductCart !== -1) {
         cart[positionProductCart].quantity++
         cart[positionProductCart].subtotal = Number((cart[positionProductCart].unitPrice * cart[positionProductCart].quantity).toFixed(2))
     } else {
@@ -74,46 +76,46 @@ function addToCart(btn, products, cart) {
         gravity: "bottom",
         position: "left",
         style: {
-          background: "linear-gradient(to right, #00b09b, #96c93d)",
+            background: "linear-gradient(to right, #00b09b, #96c93d)",
         }
-    }).showToast();
+    }).showToast()
 }
 
 function showProductsCart(cart) {
     let cartContainer = document.getElementById("cartContainer")
     let counterCart = document.getElementById("counter-cart")
     let total_cart = document.getElementById("total_cart")
-    let quantity = 0;
-    let total = 0;
+    let quantity = 0
+    let total = 0
     cartContainer.innerHTML = ""
 
     cart.forEach(product => {
         let cartProductCard = document.createElement("div")
         cartProductCard.className = "cartProductCard"
         cartProductCard.innerHTML = `
-        <img src=${product.image} alt="" height="50"/>
+        <img src=${product.image} alt=""/>
         <div>
-            <h4>${product.name} </h4>
-            <span>Precio Unitario: S/.${product.unitPrice} </span>
-            <span>x ${product.quantity} </span>
-            <p>Subtotal: S/.${product.subtotal} </p> 
+            <h5>${product.name} </h5>
+            <h5>Precio Unit.: S/${product.unitPrice} x ${product.quantity} </h5>
+            <h5>Subtotal: S/${product.subtotal} </h5>
+            <i class='bx bxs-trash-alt' id=delete${product.id} data="${product.id}" class="deleteProduct"></i> 
         </div>
-        <i class='bx bxs-trash-alt' id=delete${product.id} data="${product.id}" class="deleteProduct"></i>
+        
         `
         cartContainer.append(cartProductCard)
         quantity += product.quantity
         let btnAddToCart = document.getElementById("delete" + product.id)
         btnAddToCart.addEventListener("click", (btn) => removeFromCart(btn, cart))
         total += product.subtotal
-    });
-    counterCart.innerHTML = quantity;
-    total_cart.innerHTML = total
+    })
+    counterCart.innerHTML = quantity
+    total_cart.innerHTML = "S/" + total.toFixed(2)
 }
 
-function removeFromCart(btn, cart){
+function removeFromCart(btn, cart) {
     let idProduct = Number(btn.target.id.replace("delete", ""))
     let positionProductCart = cart.findIndex(product => product.id === idProduct)
-    cart.splice(positionProductCart, 1);
+    cart.splice(positionProductCart, 1)
     showProductsCart(cart)
 
     localStorage.setItem("cart", JSON.stringify(cart))
@@ -123,7 +125,24 @@ function removeFromCart(btn, cart){
         gravity: "bottom",
         position: "left",
         style: {
-          background: "linear-gradient(to right, #00b09b, #96c93d)",
+            background: "linear-gradient(to right, #00b09b, #96c93d)",
         }
-    }).showToast();
+    }).showToast()
 }
+
+function showHideSideBar (event) {
+    event.preventDefault()
+    event.stopPropagation()
+    let showDiv = document.querySelector(".cart")
+    console.log(showDiv)
+    if (showDiv.classList.contains("showCart")) {
+        console.log(showDiv)
+        showDiv.classList.remove("showCart")
+
+    } else {
+        showDiv.classList.add("showCart")
+    }
+    console.log(showDiv)
+}
+
+

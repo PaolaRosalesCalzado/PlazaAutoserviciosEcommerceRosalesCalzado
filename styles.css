@@ -59,6 +59,7 @@ img {
 section {
     padding: 50px 100px;
     margin-top: 50px;
+    margin-bottom: 0px;
 
     h2 {
         text-align: center;
@@ -70,10 +71,14 @@ section {
 .productsContainer {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    margin: auto;
     grid-gap: 50px;
-    height: 350px;
     width: 100%;
+    img {
+        width: 100%;
+        vertical-align: top;
+        height: 350px;
+        object-fit:contain;
+    }
 }
 
 /*header y navbar*/
@@ -86,7 +91,7 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 20px 100px;
+    padding: 15px 100px;
     transition: 0.5s linear;
     background-color: white;
 
@@ -110,7 +115,7 @@ header {
 }
 
 .navbar a {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     font-weight: 700;
     color: var(--text-color);
 }
@@ -153,26 +158,50 @@ header {
 
 /*carrito de compras*/
 .cart {
-    position: absolute;
-    top: 12%;
-    right: 1rem;
+    margin-top: 87px;
+    height: 100vh;
+    background-color: orange;
+    transition: 3s;
+    width: 0%;
+    position: fixed;
+    right: 0;
+    display: flex;
     flex-direction: column;
-    align-items: center;
-    row-gap: 0.5rem;
-    background-color: var(--bg-color);
-    padding: 20px;
-    border-radius: 0.5rem;
-    box-shadow: var(--box-shadow);
+    overflow-y: scroll;
+    bottom: 0;
+}
+
+#cartContainer {
+    padding-top: 80px;
+}
+
+#look-up {
+    background-color: black;
+    border-radius: 3px;
+    padding: 0px 2px;
+    color: white;
+}
+
+.header-icons {
+    display: flex;
+    gap: 3px;
+}
+
+#user-icon {
+    margin-left: 10px;
+}
+
+.showCart {
+    width: 30%;
+    transition: 2s;
 }
 
 .cart img {
     width: 100px;
-}
-
-.cart .box {
-    display: flex;
-    align-items: center;
-    column-gap: 2rem;
+    min-width: 100px;
+	vertical-align: top;
+	height: 100px;
+	object-fit: cover;
 }
 
 .cart .box .text h3 {
@@ -184,13 +213,17 @@ header {
 }
 
 .cart h2 {
-    font-size: 1.1rem;
-    font-weight: 600;
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin: 15px;
+    text-align: center;
 }
 
 .cartProductCard {
     display: flex;
-    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+    padding: 15px;
 }
 
 #counter-cart {
@@ -205,25 +238,4 @@ header {
     font-size: 15px;
     font-weight: 600;
 
-}
-
-.toEndCart {
-    display: none;
-}
-
-/*registro de usuario*/
-.userRegister {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    div {
-        flex-direction: row;
-    }
-
-    p,
-    div,
-    a {
-        margin: 10px;
-    }
 }
